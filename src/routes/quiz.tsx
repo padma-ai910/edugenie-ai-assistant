@@ -24,7 +24,7 @@ function normalizeOptions(value: unknown): string[] {
   visit(value);
   // A single string holding every option (e.g. "List\nDictionary\nTuple\nSet")
   // gets split into separate choices; well-formed arrays are kept as-is.
-  if (parts.length === 1 && parts[0].length > 1 && !/\s|,/.test(parts[0]) === false) {
+  if (parts.length === 1 && /[\n,;|]/.test(parts[0])) {
     const splitParts = parts[0].split(/\n+|\s*,\s*|\s*;\s*|\s*\|\s*/).map((part) => part.trim()).filter(Boolean);
     if (splitParts.length > 1) return splitParts;
   }
