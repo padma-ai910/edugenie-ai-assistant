@@ -22,10 +22,11 @@ function normalizeOptions(value: unknown): string[] {
     }
   };
   visit(value);
+  const single = parts.length === 1 ? parts[0] : undefined;
   // A single string holding every option (e.g. "List\nDictionary\nTuple\nSet")
   // gets split into separate choices; well-formed arrays are kept as-is.
-  if (parts.length === 1 && /[\n,;|]/.test(parts[0])) {
-    const splitParts = parts[0].split(/\n+|\s*,\s*|\s*;\s*|\s*\|\s*/).map((part) => part.trim()).filter(Boolean);
+  if (single !== undefined && /[\n,;|]/.test(single)) {
+    const splitParts = single.split(/\n+|\s*,\s*|\s*;\s*|\s*\|\s*/).map((part) => part.trim()).filter(Boolean);
     if (splitParts.length > 1) return splitParts;
   }
   return parts;
