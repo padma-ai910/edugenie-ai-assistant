@@ -1,24 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowDown, ArrowRight, BadgeCheck, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { FeatureCard, tools } from "@/components/edugenie/shared";
+import heroImage from "@/assets/edugenie-hero.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+const description = "EduGenie is an AI-powered learning companion for quizzes, summaries, explanations, and organized study material.";
+export const Route = createFileRoute("/")({ head: () => ({ meta: [{ title: "EduGenie — AI-Powered Learning Assistant" }, { name: "description", content: description }, { property: "og:title", content: "EduGenie — AI-Powered Learning Assistant" }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: HomePage });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+function HomePage() {
+  return <main><section className="relative overflow-hidden bg-hero"><div className="mx-auto grid min-h-[calc(100vh-4.5rem)] max-w-7xl items-center gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:py-16"><div className="relative z-10 animate-rise"><div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/75 px-3 py-1.5 text-xs font-semibold text-primary shadow-soft"><Sparkles className="size-3.5" /> AI-powered learning assistant</div><h1 className="text-5xl font-extrabold text-foreground sm:text-6xl lg:text-7xl">Edu<span className="text-gradient">Genie</span></h1><p className="mt-5 max-w-xl text-2xl font-bold leading-tight text-foreground sm:text-3xl">Learn Smarter. Understand Faster.</p><p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">Your AI-powered learning companion for quizzes, summaries, explanations, and organized study material.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Button asChild size="lg" className="h-12 shadow-glow"><Link to="/dashboard">Start Learning <ArrowRight /></Link></Button><Button asChild size="lg" variant="outline" className="h-12 bg-background/70"><a href="#features">Explore Features <ArrowDown /></a></Button></div><div className="mt-8 flex items-center gap-2 text-sm text-muted-foreground"><BadgeCheck className="size-4 text-primary" /> Four focused tools. One simple workspace.</div></div>
+    <div className="relative mx-auto w-full max-w-xl animate-fade"><div className="absolute inset-8 rounded-full bg-primary/15 blur-3xl" /><img src={heroImage} alt="Futuristic open book representing AI-powered education" width={1600} height={1000} className="relative aspect-[8/5] w-full rounded-2xl object-cover shadow-hero" /></div></div></section>
+    <section id="features" className="bg-background py-20"><div className="mx-auto max-w-7xl px-5 sm:px-8"><div className="mb-10 max-w-2xl"><p className="text-xs font-bold uppercase text-primary">Learning toolkit</p><h2 className="mt-3 text-3xl font-bold sm:text-4xl">One place for every study task</h2><p className="mt-3 text-muted-foreground">Choose a tool and move from scattered information to clearer understanding.</p></div><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{tools.map((tool, index) => <FeatureCard key={tool.to} {...tool} index={`0${index + 1}`} />)}</div></div></section>
+    <section className="border-y border-primary/10 bg-accent/40 py-12"><div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 text-center sm:flex-row sm:px-8 sm:text-left"><div><p className="text-xl font-bold">Powered by Gemini AI</p><p className="mt-1 text-sm text-muted-foreground">Connect EduGenie to your FastAPI backend to begin.</p></div><Sparkles className="size-8 text-primary" /></div></section></main>;
 }
