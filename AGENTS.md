@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep EduGenie frontend-only and centralize all FastAPI calls in `src/services/api.ts`; this preserves a simple, credential-free client boundary.
