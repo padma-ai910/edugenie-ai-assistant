@@ -40,7 +40,7 @@ async function post<T>(path: string, body: unknown): Promise<T> {
 }
 
 export function generateQuiz(studyMaterial: string, difficulty: Difficulty, numQuestions: number) {
-  return post<QuizResponse>("/api/quiz", { text: studyMaterial, difficulty, num_questions: numQuestions });
+  return post<QuizResponse>("/api/quiz", { study_material: studyMaterial, difficulty, num_questions: numQuestions });
 }
 
 export function summarizeText(text: string) {
