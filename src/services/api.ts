@@ -21,7 +21,7 @@ export interface StructureResponse {
   summary: string;
 }
 
-const API_URL = import.meta.env["VITE_API_URL"] || "https://bash-whoops-spectator.ngrok-free.dev";
+const API_URL = import.meta.env["VITE_API_URL"] || "https://edugenie-backend-lq6z.onrender.com";
 const CONNECTION_ERROR = "Unable to connect to EduGenie. Please check the backend and try again.";
 
 async function post<T>(path: string, body: unknown): Promise<T> {
