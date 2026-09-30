@@ -2,13 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, CircleAlert, RefreshCw, Send, Trophy } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ErrorNotice, PageHeader, Spinner, ToolPage } from "@/components/edugenie/shared";
 import { generateQuiz, type Difficulty, type QuizResponse } from "@/services/api";
 import { cn } from "@/lib/utils";
 
-const description = "Generate an AI-powered quiz by topic, difficulty, and question count with EduGenie.";
+const description = "Generate an AI-powered quiz from your own study material with EduGenie.";
 
 /** Ensure answer options always render as separate selectable rows. */
 function normalizeOptions(value: unknown): string[] {
